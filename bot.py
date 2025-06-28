@@ -41,8 +41,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await update.message.reply_text(
             "<b>🚀 Welcome to StudyEra!</b>\n\n"
-            "🔓 Unlock FREE access to notes, live links, test papers, and more!\n\n"
-            "👉 First, join the channels below to continue:",
+            "📚 Free Educational Resources — Notes, PYQs, Live Batches, Test Series & more!\n\n"
+            "🔐 Access is secured via channel membership.\n\n"
+            "👉 Please join the below channels to unlock your daily access token 👇",
             parse_mode="HTML",
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
@@ -56,15 +57,18 @@ async def check_channels(update: Update, context: ContextTypes.DEFAULT_TYPE):
     joined_all, not_joined = await check_all_channels(context, user_id)
 
     if joined_all:
-        await query.edit_message_text("✅ Channels joined!\n⏳ Generating your token...", parse_mode="HTML")
+        await query.edit_message_text("✅ Channels verified!\n⏳ Generating your access token...", parse_mode="HTML")
         await send_token(query, context, edit=True)
     else:
         not_joined_list = "\n".join([f"🔸 {ch[1:]}" for ch, _ in not_joined])
-        keyboard = [[InlineKeyboardButton("🔁 Retry", callback_data="check")],
-                    [InlineKeyboardButton("👑 Owner Portfilio", url=OWNER_LINK)]]
+        keyboard = [
+            [InlineKeyboardButton("🔁 Retry", callback_data="check")],
+            [InlineKeyboardButton("👑 Owner Profile", url=OWNER_LINK)]
+        ]
 
         await query.edit_message_text(
-            f"❌ You still haven't joined:\n\n<code>{not_joined_list}</code>\n\nJoin & click Retry 👇",
+            f"❌ You still haven’t joined:\n\n<code>{not_joined_list}</code>\n\n"
+            "📛 Access will be revoked if you leave any channel.",
             parse_mode="HTML",
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
@@ -91,9 +95,10 @@ async def send_token(obj, context, edit=False):
     ]
     text = (
         "<b>🎉 Access Granted!</b>\n\n"
-        "Here is your daily login token:\n\n"
+        "Here is your <u>one-time token</u> for today:\n\n"
         f"<code>{token}</code>\n\n"
-        "⚠️ This token is <u>valid only for today</u>. Paste it on the website to continue 🚀"
+        "✅ Paste this on the website to continue!\n"
+        "⚠️ Note: If you leave any channel later, your access will be revoked automatically."
     )
 
     if edit:

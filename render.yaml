@@ -1,10 +1,9 @@
+build:
+  pythonVersion: 3.10
+
 services:
   - type: web
     name: studyera-bot
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python bot.py"
-    autoDeploy: true
-
-build:
-  pythonVersion: 3.10
