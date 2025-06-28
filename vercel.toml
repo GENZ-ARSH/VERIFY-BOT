@@ -1,0 +1,14 @@
+[build]
+command = "pip install -r requirements.txt"
+
+[build.environment]
+PYTHON_VERSION = "3.9"
+
+[functions]
+bot.py = "python bot.py"
+
+[env]
+BOT_TOKEN = "8110208824:AAHeRb4fQ5rBiQ58-H6B5h4pWbWGEWdZN80"
+SECRET_KEY = "STUDYERA2025"
+OWNER_LINK = "https://t.me/II_ABOUT_ARSH_II"
+SITE_LINK = "https://studyera-ofiicial.vercel.app/auth.html"
