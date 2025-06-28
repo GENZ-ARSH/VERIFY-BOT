@@ -1,10 +1,15 @@
 import hmac, hashlib, random, string, logging
 from datetime import datetime
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+from telegram.ext import (
+    Application,
+    CommandHandler,
+    CallbackQueryHandler,
+    ContextTypes,
+)
 
 # === CONFIG ===
-BOT_TOKEN = "8110208824:AAHeRb4fQ5rBiQ58-H6B5h4pWbWGEWdZN80"
+BOT_TOKEN = "8110208824:AAHeRb4fQ5rBiQ58-H6B5h4pWbWGEWdZN80"  # <- Change this!
 CHANNELS = [
     ("@illegalhuub", "https://t.me/illegalhuub"),
     ("@StudyEra_0", "https://t.me/StudyEra_0")
